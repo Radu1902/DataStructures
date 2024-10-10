@@ -18,9 +18,12 @@ int main()
     printf("9.Self-balancing search tree\n");
     printf("0.exit\n");
 
-    scanf("%d", &dataStructureChoice);
+    scanf_s("%d", &dataStructureChoice);
 
     struct Vector v;
+    vector_init(&v);
+
+    printf("%d, %d", v.size, v.capacity);
 
     int operationChoice = 0;
     while (dataStructureChoice != 0)
