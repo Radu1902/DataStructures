@@ -4,7 +4,7 @@
 
 int main()
 {
-    int dataStructureChoice = 0;
+    int data_structure_choice = 0;
 
     printf("Choose data structure to work with:\n");
     printf("1.Vector\n");
@@ -18,25 +18,44 @@ int main()
     printf("9.Self-balancing search tree\n");
     printf("0.exit\n");
 
-    scanf_s("%d", &dataStructureChoice);
+    scanf_s("%d", &data_structure_choice);
 
-    struct Vector v;
-    vector_init(&v);
+    struct Vector vec;
+    vector_init(&vec);
 
-    printf("%d, %d", v.size, v.capacity);
+    printf("%d, %d", vec.size, vec.capacity);
 
-    int operationChoice = 0;
-    while (dataStructureChoice != 0)
+    int operation_choice = 0;
+    float temp_val;
+    int temp_count;
+
+    while (data_structure_choice != 0)
     {
-        if (dataStructureChoice == 1)
+        if (data_structure_choice == 1)
         {
-            printf("Choose vector operation:");
-            printf("1.Pushback element");
-            printf("1.Pop element");
-            printf("1.Read (Specify number of values, followed by the values themselves)");
-            printf("1.Print (Show entire vector data)");
-            printf("1.Print");
+            scanf_s("%d", &operation_choice);
+            while (operation_choice != 0)
+            {
+                printf("Choose vector operation:");
+                printf("1.Pushback element");
+                printf("2.Pop element");
+                printf("3.Read (Specify number of values, followed by the values themselves)");
+                printf("4.Print (Show entire vector data)");
+                printf("5.Get value at index");
+
+                scanf_s("%d", &operation_choice);
+
+                if (operation_choice == 1)
+                {
+                    scanf_s("%f", &temp_val);
+                    push_back(&vec, temp_val);
+                    printf("")
+                }
+
+            }
         }
+        scanf_s("%d", &data_structure_choice);
+
     }
 
 
