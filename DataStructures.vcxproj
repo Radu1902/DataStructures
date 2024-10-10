@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.c" />
+    <ClCompile Include="Vector.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector.h" />
