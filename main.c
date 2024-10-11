@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Vector.h"
+#include "DoublyLinkedList.h"
 
 int main()
 {
@@ -23,11 +24,15 @@ int main()
     struct Vector vec;
     vector_init(&vec);
 
+    struct DoublyLinkedList dll;
+    dll_init(&dll);
 
-    int operation_choice = 1;
+    
 
     while (data_structure_choice != 0)
     {
+        int operation_choice = 1;
+
         if (data_structure_choice == 1)
         {
             while (operation_choice != 0)
@@ -47,29 +52,29 @@ int main()
 
                 if (operation_choice == 1) // pushback
                 {
-                    float value;
+                    int value;
                     printf("Choose value to push back: ");
-                    scanf_s("%f", &value);
+                    scanf_s("%d", &value);
                     vector_push_back(&vec, value);
                 }
                 else if (operation_choice == 2) // pop
                 {
-                    float popped = vector_pop(&vec);
-                    printf("Popped value: %f\n", popped);
+                    int popped = vector_pop(&vec);
+                    printf("Popped value: %d\n", popped);
                 }
                 else if (operation_choice == 3) // get index value
                 {
                     int index;
                     printf("Choose index: ");
                     scanf_s("%d", &index);
-                    float value = vector_get_value(vec, index);
-                    printf("Value at index %d: %f\n", index, value);
+                    int value = vector_get_value(vec, index);
+                    printf("Value at index %d: %d\n", index, value);
                 }
                 else if (operation_choice == 4) // insert at index
                 {
-                    float value;
+                    int value;
                     printf("Choose value: ");
-                    scanf_s("%f", &value);
+                    scanf_s("%d", &value);
                     int index;
                     printf("Choose index: ");
                     scanf_s("%d", &index);
@@ -90,6 +95,27 @@ int main()
                 {
                     vector_print(vec);
                 }
+            }
+        }
+        else if (data_structure_choice == 4)
+        {
+            while (operation_choice != 0)
+            {
+                printf("\n");
+                printf("Choose linked list operation:\n");
+                printf("1.Pushback element\n");
+                printf("2.Pushfront element\n");
+                printf("3.Pop back element\n");
+                printf("4.Pop front element\n");
+                printf("5.Remove all occurances of a value\n");
+                printf("6.Insert value at occurance of a value\n");
+                printf("7.Clear list\n");
+                printf("8.Print (Show all list elements)\n");
+                printf("0.Return to main menu\n");
+
+                scanf_s("%d", &operation_choice);
+
+
             }
         }
         scanf_s("%d", &data_structure_choice);

@@ -4,7 +4,7 @@ void vector_init(struct Vector* vec)
 {
     vec->size = 0;
     vec->capacity = 1;
-    vec->elements = (float*)malloc(sizeof(float));
+    vec->elements = (int*)malloc(sizeof(int));
 }
 
 bool vector_empty(const struct Vector vec) // returns true if vector is NULL, false otherwise
@@ -14,7 +14,7 @@ bool vector_empty(const struct Vector vec) // returns true if vector is NULL, fa
     return false;
 }
 
-void vector_push_back(struct Vector* vec, float val)
+void vector_push_back(struct Vector* vec, int val)
 {
     if (vector_empty(*vec))
     {
@@ -23,11 +23,11 @@ void vector_push_back(struct Vector* vec, float val)
     vector_resize(vec);
 
     vec->elements[vec->size] = val;
-    printf("Pushed value %f at index %d\n", val, vec->size);
+    printf("Pushed value %d at index %d\n", val, vec->size);
     vec->size++;
 }
 
-float vector_pop(struct Vector* vec)
+int vector_pop(struct Vector* vec)
 {
     if (vector_empty(*vec))
     {
@@ -35,8 +35,8 @@ float vector_pop(struct Vector* vec)
         return -1.0f;
     }
 
-    float tail = vec->elements[vec->size - 1];
-    float* temp_elems = (float*)malloc(sizeof(float) * (vec->size));
+    int tail = vec->elements[vec->size - 1];
+    int* temp_elems = (int*)malloc(sizeof(int) * (vec->size));
     for (unsigned int i = 0; i < vec->size - 1; i++)
     {
         temp_elems[i] = vec->elements[i];
@@ -44,7 +44,7 @@ float vector_pop(struct Vector* vec)
     free(vec->elements);
     vec->size--;
 
-    vec->elements = (float*)malloc(sizeof(float) * vec->capacity);
+    vec->elements = (int*)malloc(sizeof(int) * vec->capacity);
     for (unsigned int i = 0; i < vec->size; i++)
     {
         vec->elements[i] = temp_elems[i];
@@ -58,7 +58,7 @@ void vector_resize(struct Vector* vec)
     if (vec->size < vec->capacity)
         return;
 
-    float* temp_elems = (float*)malloc(sizeof(float) * vec->size);
+    int* temp_elems = (int*)malloc(sizeof(int) * vec->size);
     for (unsigned int i = 0; i < vec->size; i++)
     {
         temp_elems[i] = vec->elements[i];
@@ -66,7 +66,7 @@ void vector_resize(struct Vector* vec)
     free(vec->elements);
 
     vec->capacity = vec->capacity * 2;
-    vec->elements = (float*)malloc(sizeof(float) * vec->capacity);
+    vec->elements = (int*)malloc(sizeof(int) * vec->capacity);
     for (unsigned int i = 0; i < vec->size; i++)
     {
         vec->elements[i] = temp_elems[i];
@@ -74,7 +74,7 @@ void vector_resize(struct Vector* vec)
     free(temp_elems);
 }
 
-float vector_get_value(const struct Vector vec, const int index)
+int vector_get_value(const struct Vector vec, const int index)
 {
     if (index >= vec.size || index < 0)
     {
@@ -84,7 +84,7 @@ float vector_get_value(const struct Vector vec, const int index)
     return vec.elements[index];
 }
 
-void vector_insert(struct Vector* vec, const float value, const int index)
+void vector_insert(struct Vector* vec, const int value, const int index)
 {
     if (index > vec->size)
     {
@@ -93,7 +93,7 @@ void vector_insert(struct Vector* vec, const float value, const int index)
     }
     vector_resize(vec);
 
-    float* temp_elems = (float*)malloc(sizeof(float) * (vec->size + 1));
+    int* temp_elems = (int*)malloc(sizeof(int) * (vec->size + 1));
 
     for (unsigned int i = 0; i < index; i++)
     {
@@ -113,7 +113,7 @@ void vector_insert(struct Vector* vec, const float value, const int index)
 
     free(temp_elems);
 
-    printf("Inserted value: %f at index %d\n", value, index);
+    printf("Inserted value: %d at index %d\n", value, index);
 }
 
 void vector_erase(struct Vector* vec, const int index)
@@ -123,7 +123,7 @@ void vector_erase(struct Vector* vec, const int index)
         printf("Invalid index\n");
         return;
     }
-    float* temp_elems = (float*)malloc(sizeof(float) * (vec->size - 1));
+    int* temp_elems = (int*)malloc(sizeof(int) * (vec->size - 1));
 
     for (unsigned int i = 0; i < index; i++)
     {
@@ -136,7 +136,7 @@ void vector_erase(struct Vector* vec, const int index)
     free(vec->elements);
 
     vec->size--;
-    vec->elements = (float*)malloc(sizeof(float) * (vec->capacity));
+    vec->elements = (int*)malloc(sizeof(int) * (vec->capacity));
     for (unsigned int i = 0; i < vec->size; i++)
     {
         vec->elements[i] = temp_elems[i];
@@ -161,12 +161,12 @@ void vector_read(struct Vector* vec)
     } while (count <= 0);
 
     vec->size = count;
-    vec->elements = (float*)malloc(sizeof(float) * count);
+    vec->elements = (int*)malloc(sizeof(int) * count);
     vec->capacity = count;
     printf("Choose elements: ");
     for (unsigned int i = 0; i < count; i++)
     {
-        scanf_s("%f", &(vec->elements[i]));
+        scanf_s("%d", &(vec->elements[i]));
     }
 }
 
@@ -174,7 +174,7 @@ void vector_print(const struct Vector vec)
 {
     for (unsigned int i = 0; i < vec.size; i++)
     {
-        printf("%f ", vec.elements[i]);
+        printf("%d ", vec.elements[i]);
     }
     printf("\n");
     printf("size: %d\ncapacity: %d\n", vec.size, vec.capacity);
