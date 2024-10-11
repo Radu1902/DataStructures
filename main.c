@@ -23,35 +23,73 @@ int main()
     struct Vector vec;
     vector_init(&vec);
 
-    printf("%d, %d", vec.size, vec.capacity);
 
-    int operation_choice = 0;
-    float temp_val;
-    int temp_count;
+    int operation_choice = 1;
 
     while (data_structure_choice != 0)
     {
         if (data_structure_choice == 1)
         {
-            scanf_s("%d", &operation_choice);
             while (operation_choice != 0)
             {
-                printf("Choose vector operation:");
-                printf("1.Pushback element");
-                printf("2.Pop element");
-                printf("3.Read (Specify number of values, followed by the values themselves)");
-                printf("4.Print (Show entire vector data)");
-                printf("5.Get value at index");
+                printf("\n");
+                printf("Choose vector operation:\n");
+                printf("1.Pushback element\n");
+                printf("2.Pop element\n");
+                printf("3.Get value at index\n");
+                printf("4.Insert value at index\n");
+                printf("5.Erase value at index\n");
+                printf("6.Read (Specify number of values, followed by the values themselves)\n");
+                printf("7.Print (Show all vector data)\n");
+                printf("0.Return to main menu\n");
 
                 scanf_s("%d", &operation_choice);
 
-                if (operation_choice == 1)
+                if (operation_choice == 1) // pushback
                 {
-                    scanf_s("%f", &temp_val);
-                    push_back(&vec, temp_val);
-                    printf("")
+                    float value;
+                    printf("Choose value to push back: ");
+                    scanf_s("%f", &value);
+                    vector_push_back(&vec, value);
                 }
-
+                else if (operation_choice == 2) // pop
+                {
+                    float popped = vector_pop(&vec);
+                    printf("Popped value: %f\n", popped);
+                }
+                else if (operation_choice == 3) // get index value
+                {
+                    int index;
+                    printf("Choose index: ");
+                    scanf_s("%d", &index);
+                    float value = vector_get_value(vec, index);
+                    printf("Value at index %d: %f\n", index, value);
+                }
+                else if (operation_choice == 4) // insert at index
+                {
+                    float value;
+                    printf("Choose value: ");
+                    scanf_s("%f", &value);
+                    int index;
+                    printf("Choose index: ");
+                    scanf_s("%d", &index);
+                    vector_insert(&vec, value, index);
+                }
+                else if (operation_choice == 5) // erase at index
+                {
+                    int index;
+                    printf("Choose index: ");
+                    scanf_s("%d", &index);
+                    vector_erase(&vec, index);
+                }
+                else if (operation_choice == 6) // read
+                {
+                    vector_read(&vec);
+                }
+                else if (operation_choice == 7) // print
+                {
+                    vector_print(vec);
+                }
             }
         }
         scanf_s("%d", &data_structure_choice);

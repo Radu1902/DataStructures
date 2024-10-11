@@ -14,7 +14,7 @@ bool vector_empty(const struct Vector vec) // returns true if vector is NULL, fa
     return false;
 }
 
-void vector_push_back(struct Vector* vec, float elem)
+void vector_push_back(struct Vector* vec, float val)
 {
     if (vector_empty(*vec))
     {
@@ -22,7 +22,8 @@ void vector_push_back(struct Vector* vec, float elem)
     }
     vector_resize(vec);
 
-    vec->elements[vec->size] = elem;
+    vec->elements[vec->size] = val;
+    printf("Pushed value %f at index %d\n", val, vec->size);
     vec->size++;
 }
 
@@ -30,12 +31,26 @@ float vector_pop(struct Vector* vec)
 {
     if (vector_empty(*vec))
     {
-        printf("Cannot pop from empty vector");
+        printf("Cannot pop from empty vector\n");
         return -1.0f;
     }
 
     float tail = vec->elements[vec->size - 1];
-    vec->elements = (float*)realloc(vec->elements, sizeof(vec->size - 1));
+    float* temp_elems = (float*)malloc(sizeof(float) * (vec->size));
+    for (unsigned int i = 0; i < vec->size - 1; i++)
+    {
+        temp_elems[i] = vec->elements[i];
+    }
+    free(vec->elements);
+    vec->size--;
+
+    vec->elements = (float*)malloc(sizeof(float) * vec->capacity);
+    for (unsigned int i = 0; i < vec->size; i++)
+    {
+        vec->elements[i] = temp_elems[i];
+    }
+    free(temp_elems);
+    return tail;
 }
 
 void vector_resize(struct Vector* vec)
@@ -59,9 +74,9 @@ void vector_resize(struct Vector* vec)
     free(temp_elems);
 }
 
-float vector_get_value(const struct Vector vec, const unsigned int index)
+float vector_get_value(const struct Vector vec, const int index)
 {
-    if (index >= vec.size)
+    if (index >= vec.size || index < 0)
     {
         printf("Invalid index\n");
         return -1.0f;
@@ -69,11 +84,11 @@ float vector_get_value(const struct Vector vec, const unsigned int index)
     return vec.elements[index];
 }
 
-void vector_insert(struct Vector* vec, const float value, const unsigned int index)
+void vector_insert(struct Vector* vec, const float value, const int index)
 {
     if (index > vec->size)
     {
-        printf("Invalid index");
+        printf("Invalid index\n");
         return;
     }
     vector_resize(vec);
@@ -85,9 +100,9 @@ void vector_insert(struct Vector* vec, const float value, const unsigned int ind
         temp_elems[i] = vec->elements[i];
     }
     temp_elems[index] = value;
-    for (unsigned int i = index; i < vec->size + 1; i++)
+    for (unsigned int i = index + 1; i < vec->size + 1; i++)
     {
-        temp_elems[i] = vec->elements[i];
+        temp_elems[i] = vec->elements[i - 1];
     }
 
     vec->size++;
@@ -97,13 +112,15 @@ void vector_insert(struct Vector* vec, const float value, const unsigned int ind
     }
 
     free(temp_elems);
+
+    printf("Inserted value: %f at index %d\n", value, index);
 }
 
-void vector_erase(struct Vector* vec, const unsigned int index)
+void vector_erase(struct Vector* vec, const int index)
 {
     if (index >= vec->size)
     {
-        printf("Invalid index");
+        printf("Invalid index\n");
         return;
     }
     float* temp_elems = (float*)malloc(sizeof(float) * (vec->size - 1));
@@ -126,6 +143,8 @@ void vector_erase(struct Vector* vec, const unsigned int index)
     }
 
     free(temp_elems);
+
+    printf("Erased value at index %d\n", index);
 }
 
 void vector_read(struct Vector* vec)
@@ -144,9 +163,10 @@ void vector_read(struct Vector* vec)
     vec->size = count;
     vec->elements = (float*)malloc(sizeof(float) * count);
     vec->capacity = count;
+    printf("Choose elements: ");
     for (unsigned int i = 0; i < count; i++)
     {
-        scanf_s("%d", &(vec->elements[i]));
+        scanf_s("%f", &(vec->elements[i]));
     }
 }
 
@@ -154,9 +174,10 @@ void vector_print(const struct Vector vec)
 {
     for (unsigned int i = 0; i < vec.size; i++)
     {
-        printf("%d ", vec.elements[i]);
+        printf("%f ", vec.elements[i]);
     }
     printf("\n");
+    printf("size: %d\ncapacity: %d\n", vec.size, vec.capacity);
 }
 
 void vector_clear(struct Vector* vec)
