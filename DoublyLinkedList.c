@@ -15,7 +15,7 @@ void dll_init(struct DoublyLinkedList* dll)
 
 void dll_push_front(struct DoublyLinkedList* dll, int value)
 {
-	struct ListNode* new_front_node;
+	struct ListNode* new_front_node = (struct ListNode*)malloc(sizeof(struct ListNode*));
 	new_front_node->data = value;
 	new_front_node->prev = dll->head;
 

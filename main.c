@@ -108,14 +108,68 @@ int main()
                 printf("3.Pop back element\n");
                 printf("4.Pop front element\n");
                 printf("5.Remove all occurances of a value\n");
-                printf("6.Insert value at occurance of a value\n");
+                printf("6.Insert value at first occurance of a value\n");
                 printf("7.Clear list\n");
                 printf("8.Print (Show all list elements)\n");
                 printf("0.Return to main menu\n");
 
                 scanf_s("%d", &operation_choice);
 
-
+                if (operation_choice == 1) // pushback
+                {
+                    int value;
+                    printf("value to push back: ");
+                    scanf_s("%d", &value);
+                    dll_push_back(&dll, value);
+                }
+                else if (operation_choice == 2) // pushfront
+                {
+                    int value;
+                    printf("value to push front: ");
+                    scanf_s("%d", &value);
+                    dll_push_front(&dll, value);
+                }
+                else if (operation_choice == 3) // pop back
+                {
+                    dll_pop_back(&dll);
+                }
+                else if (operation_choice == 4) // pop front
+                {
+                    dll_pop_front(&dll);
+                }
+                else if (operation_choice == 5) // remove
+                {
+                    int value;
+                    printf("value to remove from list: ");
+                    scanf_s("%d", &value);
+                    dll_remove(&dll, value);
+                }
+                else if (operation_choice == 6) // insert
+                {
+                    int insert_location;
+                    int insert_value;
+                    printf("Choose the location of insertion, by specifying a value from the list: ");
+                    scanf_s("%d", &insert_location);
+                    struct ListNode* location_node = dll_find(dll, insert_location);
+                    if (location_node != NULL)
+                    {
+                        printf("Choose the value to insert: ");
+                        scanf_s("%d", &insert_value);
+                        dll_insert(&dll, location_node, insert_value);
+                    }
+                    else
+                    {
+                        printf("Could not find any nodes with the specified value in the list.");
+                    }
+                }
+                else if (operation_choice == 7) // clear
+                {
+                    dll_clear(&dll);
+                }
+                else if (operation_choice == 8) // print
+                {
+                    dll_print(dll);
+                }
             }
         }
         scanf_s("%d", &data_structure_choice);
