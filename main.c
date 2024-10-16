@@ -5,21 +5,8 @@
 
 int main()
 {
-    int data_structure_choice = 0;
+    int data_structure_choice = 1;
 
-    printf("Choose data structure to work with:\n");
-    printf("1.Vector\n");
-    printf("2.Stack\n");
-    printf("3.Queue\n");
-    printf("4.Doubly linked list\n");
-    printf("5.Hashmap\n");
-    printf("6.Heap\n");
-    printf("7.Binary tree\n");
-    printf("8.Binary search tree\n");
-    printf("9.Self-balancing search tree\n");
-    printf("0.exit\n");
-
-    scanf_s("%d", &data_structure_choice);
 
     struct Vector vec;
     vector_init(&vec);
@@ -31,6 +18,20 @@ int main()
 
     while (data_structure_choice != 0)
     {
+        printf("Choose data structure to work with:\n");
+        printf("1.Vector\n");
+        printf("2.Stack\n");
+        printf("3.Queue\n");
+        printf("4.Doubly linked list\n");
+        printf("5.Hashmap\n");
+        printf("6.Heap\n");
+        printf("7.Binary tree\n");
+        printf("8.Binary search tree\n");
+        printf("9.Self-balancing search tree\n");
+        printf("0.exit\n");
+
+        scanf_s("%d", &data_structure_choice);
+
         int operation_choice = 1;
 
         if (data_structure_choice == 1)
@@ -172,8 +173,6 @@ int main()
                 }
             }
         }
-        scanf_s("%d", &data_structure_choice);
-
     }
 
 
