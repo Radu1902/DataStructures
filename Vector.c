@@ -27,7 +27,7 @@ void vector_push_back(struct Vector* vec, int val)
     vec->size++;
 }
 
-int vector_pop(struct Vector* vec)
+void vector_pop(struct Vector* vec)
 {
     if (vector_empty(*vec))
     {
@@ -50,7 +50,7 @@ int vector_pop(struct Vector* vec)
         vec->elements[i] = temp_elems[i];
     }
     free(temp_elems);
-    return tail;
+    printf("Popped last element of value: %d", tail);
 }
 
 void vector_resize(struct Vector* vec)

@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Vector.h"
+#include "Stack.h"
+#include "Queue.h"
 #include "DoublyLinkedList.h"
 
 int main()
@@ -14,7 +16,8 @@ int main()
     struct DoublyLinkedList dll;
     dll_init(&dll);
 
-    
+    struct Stack stack;
+    stack_init(&stack);
 
     while (data_structure_choice != 0)
     {
@@ -60,8 +63,7 @@ int main()
                 }
                 else if (operation_choice == 2) // pop
                 {
-                    int popped = vector_pop(&vec);
-                    printf("Popped value: %d\n", popped);
+                    vector_pop(&vec);
                 }
                 else if (operation_choice == 3) // get index value
                 {
@@ -98,6 +100,87 @@ int main()
                 }
             }
         }
+        else if (data_structure_choice == 2)
+        {
+            while (operation_choice != 0)
+            {
+                printf("\n");
+                printf("Choose stack operation:\n");
+                printf("1.Push element\n");
+                printf("2.Pop element\n");
+                printf("3.Peek element\n");
+                printf("4.Clear stack\n");
+                printf("5.Print stack\n");
+                printf("0.Return to main menu\n");
+
+                scanf_s("%d", &operation_choice);
+                
+                if (operation_choice == 1) // push
+                {
+                    int value = 0;
+                    printf("Value to push: ");
+                    scanf_s("%d", &value);
+                    stack_push(&stack, value);
+                }
+                if (operation_choice == 2) // pop
+                {
+                    stack_pop(&stack);
+                }
+                if (operation_choice == 3) // peek
+                {
+                    printf("Value at the top of the stack: %d\n", stack_peek(stack));
+                }
+                if (operation_choice == 4) // clear
+                {
+                    stack_clear(&stack);
+                }
+                if (operation_choice == 5) // print
+                {
+                    stack_print(stack);
+                }
+            }
+        }
+        else if (data_structure_choice == 3)
+        {
+            while (operation_choice != 0)
+            {
+                printf("\n");
+                printf("Choose queue operation:\n");
+                printf("1.Enqueue element\n");
+                printf("2.Dequeue element\n");
+                printf("3.Peek element\n");
+                printf("4.Clear queue\n");
+                printf("5.Print queue\n");
+                printf("0.Return to main menu\n");
+
+                scanf_s("%d", &operation_choice);
+                
+                if (operation_choice == 1) // push
+                {
+                    int value = 0;
+                    printf("Value to push: ");
+                    scanf_s("%d", &value);
+                    queue_push(&stack, value);
+                }
+                if (operation_choice == 2) // pop
+                {
+                    queue_pop(&stack);
+                }
+                if (operation_choice == 3) // peek
+                {
+                    printf("Value at the front of the queue: %d\n", queue_peek(stack));
+                }
+                if (operation_choice == 4) // clear
+                {
+                    stack_clear(&stack);
+                }
+                if (operation_choice == 5) // print
+                {
+                    stack_print(stack);
+                }
+            }
+        }
+
         else if (data_structure_choice == 4)
         {
             while (operation_choice != 0)

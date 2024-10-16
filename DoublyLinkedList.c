@@ -71,7 +71,7 @@ void dll_pop_front(struct DoublyLinkedList* dll)
 
 	struct ListNode* new_head = dll->head->next;
 	new_head->prev = NULL;
-	free(dll->head); // bug ciudat, se intampla doar dupa ce apelez push_front macar o data pe lista
+	free(dll->head);
 	dll->head = new_head;
 }
 void dll_pop_back(struct DoublyLinkedList* dll)
@@ -194,8 +194,7 @@ void dll_print(const struct DoublyLinkedList dll)
 	}
 	printf("TAIL\n");
 	
-	unsigned int size = dll_size(dll);
-	printf("size: %d\n", size);
+	printf("size: %d\n", dll_size(dll));
 }
 
 unsigned int dll_size(const struct DoublyLinkedList dll)
