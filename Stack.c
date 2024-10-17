@@ -49,8 +49,8 @@ int stack_peek(const struct Stack stack)
 {
 	if (stack_empty(stack))
 	{
-		printf("Stack has no elements\n");
-		return 0;
+		printf("Cannot peek on empty stack. Returning -1 as a sentinel value.\n");
+		return -1;
 	}
 	return stack.top->data;
 }
@@ -64,7 +64,7 @@ bool stack_empty(const struct Stack stack)
 
 void stack_clear(struct Stack* stack)
 {
-	while (stack_empty(*stack))
+	while (!stack_empty(*stack))
 	{
 		stack_pop(stack);
 	}
@@ -74,12 +74,13 @@ void stack_print(const struct Stack stack)
 {
 	struct StackNode* current_node = stack.top;
 
+	printf("\nTOP\n");
 	while (current_node != NULL)
 	{
 		printf("%d\n---\n", current_node->data);
 		current_node = current_node->next;
 	}
-	printf("\nsize: %d\n", stack_size(stack));
+	printf("---\n\nsize: %d\n", stack_size(stack));
 }
 
 unsigned int stack_size(const struct Stack stack)
@@ -90,6 +91,7 @@ unsigned int stack_size(const struct Stack stack)
 	while (current_node != NULL)
 	{
 		counter++;
+		current_node = current_node->next;
 	}
 
 	return counter;

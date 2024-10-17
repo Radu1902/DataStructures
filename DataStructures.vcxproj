@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Deque.c" />
     <ClCompile Include="DoublyLinkedList.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="Queue.c" />
@@ -134,6 +135,7 @@
     <ClCompile Include="Vector.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Deque.h" />
     <ClInclude Include="DoublyLinkedList.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Stack.h" />

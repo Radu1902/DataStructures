@@ -19,6 +19,9 @@ int main()
     struct Stack stack;
     stack_init(&stack);
 
+    struct Queue queue;
+    queue_init(&queue);
+
     while (data_structure_choice != 0)
     {
         printf("Choose data structure to work with:\n");
@@ -155,28 +158,28 @@ int main()
 
                 scanf_s("%d", &operation_choice);
                 
-                if (operation_choice == 1) // push
+                if (operation_choice == 1) // enqueue
                 {
                     int value = 0;
-                    printf("Value to push: ");
+                    printf("Value to enqueue: ");
                     scanf_s("%d", &value);
-                    queue_push(&stack, value);
+                    queue_enqueue(&queue, value);
                 }
-                if (operation_choice == 2) // pop
+                if (operation_choice == 2) // dequeue
                 {
-                    queue_pop(&stack);
+                    queue_dequeue(&queue);
                 }
                 if (operation_choice == 3) // peek
                 {
-                    printf("Value at the front of the queue: %d\n", queue_peek(stack));
+                    printf("Value at the front of the queue: %d\n", queue_peek(queue));
                 }
                 if (operation_choice == 4) // clear
                 {
-                    stack_clear(&stack);
+                    queue_clear(&queue);
                 }
                 if (operation_choice == 5) // print
                 {
-                    stack_print(stack);
+                    queue_print(queue);
                 }
             }
         }
