@@ -28,12 +28,13 @@ int main()
         printf("1.Vector\n");
         printf("2.Stack\n");
         printf("3.Queue\n");
-        printf("4.Doubly linked list\n");
-        printf("5.Hashmap\n");
-        printf("6.Heap\n");
-        printf("7.Binary tree\n");
-        printf("8.Binary search tree\n");
-        printf("9.Self-balancing search tree\n");
+        printf("4.Deque\n");
+        printf("5.Doubly linked list\n");
+        printf("6.Hashmap\n");
+        printf("7.Heap\n");
+        printf("8.Binary tree\n");
+        printf("9.Binary search tree\n");
+        printf("10.Self-balancing search tree\n");
         printf("0.exit\n");
 
         scanf_s("%d", &data_structure_choice);
@@ -183,8 +184,25 @@ int main()
                 }
             }
         }
-
         else if (data_structure_choice == 4)
+        {
+            printf("\n");
+            printf("Choose deque operation:\n");
+            printf("1.Pushback element\n");
+            printf("2.Pushfront element\n");
+            printf("3.Pop back element\n");
+            printf("4.Pop front element\n");
+            printf("5.Get front element\n");
+            printf("6.Get back element\n");
+            printf("7.Clear deque\n");
+            printf("8.Print (Show all deque elements)\n");
+            printf("0.Return to main menu\n");
+
+            scanf_s("%d", &operation_choice);
+
+        }
+
+        else if (data_structure_choice == 5)
         {
             while (operation_choice != 0)
             {
