@@ -3,7 +3,10 @@
 #include "Vector.h"
 #include "Stack.h"
 #include "Queue.h"
+#include "Deque.h"
 #include "DoublyLinkedList.h"
+
+
 
 int main()
 {
@@ -22,11 +25,13 @@ int main()
     struct Queue queue;
     queue_init(&queue);
 
+    struct Deque deque;
+    deque_init(&deque);
+
     while (data_structure_choice != 0)
     {
         printf("Choose data structure to work with:\n");
-        printf("1.Vector\n");
-        printf("2.Stack\n");
+        printf("1.Vector\n"); printf("2.Stack\n");
         printf("3.Queue\n");
         printf("4.Deque\n");
         printf("5.Doubly linked list\n");
@@ -41,7 +46,7 @@ int main()
 
         int operation_choice = 1;
 
-        if (data_structure_choice == 1)
+        if (data_structure_choice == 1) // vector
         {
             while (operation_choice != 0)
             {
@@ -104,7 +109,7 @@ int main()
                 }
             }
         }
-        else if (data_structure_choice == 2)
+        else if (data_structure_choice == 2) // stack
         {
             while (operation_choice != 0)
             {
@@ -144,7 +149,7 @@ int main()
                 }
             }
         }
-        else if (data_structure_choice == 3)
+        else if (data_structure_choice == 3) // queue
         {
             while (operation_choice != 0)
             {
@@ -184,25 +189,66 @@ int main()
                 }
             }
         }
-        else if (data_structure_choice == 4)
+        else if (data_structure_choice == 4) // deque
         {
-            printf("\n");
-            printf("Choose deque operation:\n");
-            printf("1.Pushback element\n");
-            printf("2.Pushfront element\n");
-            printf("3.Pop back element\n");
-            printf("4.Pop front element\n");
-            printf("5.Get front element\n");
-            printf("6.Get back element\n");
-            printf("7.Clear deque\n");
-            printf("8.Print (Show all deque elements)\n");
-            printf("0.Return to main menu\n");
+            while (operation_choice != 0)
+            {
+                printf("\n");
+                printf("Choose deque operation:\n");
+                printf("1.Pushback element\n");
+                printf("2.Pushfront element\n");
+                printf("3.Pop rear element\n");
+                printf("4.Pop front element\n");
+                printf("5.Get rear element\n");
+                printf("6.Get front element\n");
+                printf("7.Clear deque\n");
+                printf("8.Print (Show all deque elements)\n");
+                printf("0.Return to main menu\n");
 
-            scanf_s("%d", &operation_choice);
+                scanf_s("%d", &operation_choice);
 
+                if (operation_choice == 1) // pushback
+                {
+                    int value = 0;
+                    printf("Value to push queue: ");
+                    scanf_s("%d", &value);
+                    deque_push_back(&deque, value);
+                }
+                if (operation_choice == 2) // pushfront
+                {
+                    int value = 0;
+                    printf("Value to push front: ");
+                    scanf_s("%d", &value);
+                    deque_push_front(&deque, value);
+                }
+                if (operation_choice == 3) // pop back
+                {
+                    deque_pop_back(&deque);
+                }
+                if (operation_choice == 4) // pop front
+                {
+                    deque_pop_front(&deque);
+                }
+                if (operation_choice == 5) // get back
+                {
+                    printf("Value at deque rear: %d", deque_rear(deque));
+                }
+                if (operation_choice == 6) // get front
+                {
+                    printf("Value at deque front: %d", deque_front(deque));
+                }
+                if (operation_choice == 7) // clear
+                {
+                    deque_clear(&deque);
+                }
+                if (operation_choice == 8) // print
+                {
+                    deque_print(deque);
+                }
+            }
         }
 
-        else if (data_structure_choice == 5)
+        else if (data_structure_choice == 5) // doubly linked list
         {
             while (operation_choice != 0)
             {
